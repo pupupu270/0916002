@@ -7,9 +7,33 @@ console.log("console says="+process.env.CONNECTION_STRING);
 
 const  {Client} = require("pg");
 
-const sql_client = new Client({
+const sql= new Client({
 connectionString:process.env.CONNECTION_STRING
 });
-sql_client.connect();
+sql.connect();
 
-sql_client.end();
+sql.end();
+
+
+
+
+
+http.createServer((req, res) => {
+
+    console.log(req.url);
+    if (req.url == "/")
+        req.url = "/index.html";
+
+    fs.readFile(__dirname + "/html" + req.url, (err, data) => {
+
+        if (err == null)
+        {
+            res.writeHead(200);
+            res.write(data);
+            res.end();
+        }
+    });
+
+  
+
+}).listen(2000);
