@@ -2,9 +2,6 @@
 
 require("dotenv").config();
 
-console.log("console says="+process.env.CONNECTION_STRING);
-
-
 const  {Client} = require("pg");
 
 const sql= new Client({
